@@ -45,7 +45,7 @@ dfd1 = pd.read_json(file)
 data2 = dfd1.to_dict(orient="records")
 
 #newdb.newcol.insert_one({"name":"vanu"})
-newdb.newcol.insert_many(data2)
+newcol.insert_many(data2)
 
 
 #x = json.loads(file)
