@@ -59,5 +59,5 @@ Run:
         Pymongo run filename
         
         
-The code will be executed in streamlit browser
+The code will be executed in streamlit browser after clicking the url after running streamlit
       
