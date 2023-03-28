@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import snscrape.modules.twitter as snmtwitter
+from altair.examples.pyramid import df
 from pymongo import MongoClient
 import csv
 
@@ -79,7 +80,9 @@ def upl():
     data = st.file_uploader("Upload a CSV")
     return data
 
-
+upl()
+dwl1(df)
+dwl(df)
 st.success("Data scrapped and collected successfully")
 st.snow()
 client.close()
