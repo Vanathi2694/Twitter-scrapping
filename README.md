@@ -1,5 +1,6 @@
 # Twitter-scrapping
 Skills:
+
       Python scripting
       MongoDb
       Streamlit
@@ -7,14 +8,17 @@ Skills:
       
       
 Domain:
+
       Social Media
       
       
 Results:
+
       To scrape the twitter data and store it in the database and allow the user to upload and download the data in multiple formats
       
       
 GUI used in streamlit:
+
       SelectBox for Keyword or Hashtag to be searched
       Text area for keyword or hashtag
       Start Date
@@ -29,6 +33,7 @@ GUI used in streamlit:
       
       
 Process:
+
       *Type the keyword or hashtag to be searched using streamlit
       *After entering the date and tweetcount using streamlit, the twitter data will be scrapped using snscrape
       *We can download the data either as csv or json format using streamlit
@@ -39,6 +44,7 @@ Process:
 
 
 Install in python:
+
         pip install streamlit
         pip install snscrape
         pip install pymongo
@@ -46,6 +52,7 @@ Install in python:
 
 
 Run:
+
         Streamlit run filename
         Pandas run filename
         Snscrape run filename
