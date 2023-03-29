@@ -21,26 +21,24 @@ newdb = client["twitterscrapping"]
 newcol = newdb["datas"]
 
 
-def twi_scrapper():
-
-    if w:
-        if choice == "keyword":
-            for i, tweet in enumerate(snmtwitter.TwitterSearchScraper('w').get_items()):
-                if i > 1000 and date < date1 and choice >= tweet.retweetCount:
-                    break
-                tweet_list.append([tweet.date, tweet.id, tweet.url, tweet.content, tweet.user, tweet.replyCount, tweet.retweetCount, tweet.lang, tweet.source, tweet.likeCount])
-            tweets_df1 = pd.DataFrame(tweet_list, columns=['Datetime', 'Tweetid', 'Url', 'Content', 'User', 'Replycount', 'Retweetcount', 'Language', 'Source', 'Likecount'])
-            st.dataframe(tweets_df1)
-        else:
-            for i, tweet in enumerate(snmtwitter.TwitterHashtagScraper('w').get_items()):
-                if i > 1000 and date < date1 and choice >= tweet.retweetCount:
-                    break
-                tweet_list.append(
-                    [tweet.date, tweet.id, tweet.url, tweet.content, tweet.user, tweet.replyCount, tweet.retweetCount, tweet.lang, tweet.source, tweet.likeCount])
-            tweets_df1 = pd.DataFrame(tweet_list, columns=['Datetime', 'Tweetid', 'Url', 'Content', 'User', 'Replycount', 'Retweetcount', 'Language', 'Source', 'Likecount'])
-            st.dataframe(tweets_df1)
+if w:
+    if choice == "keyword":
+        for i, tweet in enumerate(snmtwitter.TwitterSearchScraper('w').get_items()):
+            if i > 1000 and date < date1 and choice >= tweet.retweetCount:
+                break
+            tweet_list.append([tweet.date, tweet.id, tweet.url, tweet.content, tweet.user, tweet.replyCount, tweet.retweetCount, tweet.lang, tweet.source, tweet.likeCount])
+        tweets_df1 = pd.DataFrame(tweet_list, columns=['Datetime', 'Tweetid', 'Url', 'Content', 'User', 'Replycount', 'Retweetcount', 'Language', 'Source', 'Likecount'])
+        st.dataframe(tweets_df1)
     else:
-        st.warning("Enter the Keyword or Hashtag to be scrapped")
+        for i, tweet in enumerate(snmtwitter.TwitterHashtagScraper('w').get_items()):
+            if i > 1000 and date < date1 and choice >= tweet.retweetCount:
+                break
+            tweet_list.append(
+                    [tweet.date, tweet.id, tweet.url, tweet.content, tweet.user, tweet.replyCount, tweet.retweetCount, tweet.lang, tweet.source, tweet.likeCount])
+        tweets_df1 = pd.DataFrame(tweet_list, columns=['Datetime', 'Tweetid', 'Url', 'Content', 'User', 'Replycount', 'Retweetcount', 'Language', 'Source', 'Likecount'])
+        st.dataframe(tweets_df1)
+else:
+    st.warning("Enter the Keyword or Hashtag to be scrapped")
 
 
 @st.cache_data
@@ -80,11 +78,11 @@ newcol.insert_many(data1)
 
 
 def upl():
-    data = st.file_uploader("Upload a CSV")
+    data = st.file_uploader("Upload the data")
     return data
 
 
-twi_scrapper()
+
 upl()
 dwl1(df)
 dwl(df)
