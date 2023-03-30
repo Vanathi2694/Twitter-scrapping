@@ -52,6 +52,7 @@ def downloading_json_file():
     st.download_button('Download json File', file_name="python_tweetscrap.json", data=json, mime="text/json")
     st.write(st.session_state.Download_json_File)
 
+def json_file_open_insert():
     file = open("python_tweetscrap.json", "r")
     dfd1 = pd.read_json(file)
     data2 = dfd1.to_dict(orient="records")
@@ -71,6 +72,8 @@ def downloading_csv_file():
     st.download_button('Download csv File', file_name="python_tweetscrap.csv", data=csv, mime="text/csv")
     st.write(st.session_state.Download_csv_File)
 
+
+def csv_file_open_insert():
     csvfile = open("python_tweetscrap.csv", 'r')
     dfd = pd.read_csv(csvfile)
     data1 = dfd.to_dict(orient="records")
@@ -83,7 +86,9 @@ def upl():
 
 
 downloading_json_file()
+json_file_open_insert()
 downloading_csv_file()
+csv_file_open_insert()
 upl()
 st.success("Data scrapped and collected successfully")
 st.snow()
