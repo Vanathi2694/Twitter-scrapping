@@ -34,7 +34,7 @@ if w:
             if i > 1000 and date < date1 and choice >= tweet.retweetCount:
                 break
             tweet_list.append(
-                    [tweet.date, tweet.id, tweet.url, tweet.content, tweet.user, tweet.replyCount, tweet.retweetCount, tweet.lang, tweet.source, tweet.likeCount])
+                        [tweet.date, tweet.id, tweet.url, tweet.content, tweet.user, tweet.replyCount, tweet.retweetCount, tweet.lang, tweet.source, tweet.likeCount])
         tweets_df1 = pd.DataFrame(tweet_list, columns=['Datetime', 'Tweetid', 'Url', 'Content', 'User', 'Replycount', 'Retweetcount', 'Language', 'Source', 'Likecount'])
         st.dataframe(tweets_df1)
 else:
@@ -45,36 +45,36 @@ else:
 def dwl1(df):
     return df.to_json().encode('utf-8')
 
+def downloading_json_file():
+    json = dwl1(tweets_df1)
+    if 'Download_json_File' not in st.session_state:
+        st.session_state.Download_json_File = True
+    st.download_button('Download json File', file_name="python_tweetscrap.json", data=json, mime="text/json")
+    st.write(st.session_state.Download_json_File)
 
-json = dwl1(tweets_df1)
-if 'Download_json_File' not in st.session_state:
-    st.session_state.Download_json_File = True
-st.download_button('Download json File', file_name="python_tweetscrap.json", data=json, mime="text/json")
-st.write(st.session_state.Download_json_File)
-
-file = open("python_tweetscrap.json", "r")
-dfd1 = pd.read_json(file)
-data2 = dfd1.to_dict(orient="records")
+    file = open("python_tweetscrap.json", "r")
+    dfd1 = pd.read_json(file)
+    data2 = dfd1.to_dict(orient="records")
 
 
-newcol.insert_many(data2)
+    newcol.insert_many(data2)
 
 
 @st.cache_data
 def dwl(df):
     return df.to_csv().encode('utf-8')
 
+def downloading_csv_file():
+    csv = dwl(tweets_df1)
+    if 'Download_csv_File' not in st.session_state:
+        st.session_state.Download_csv_File = True
+    st.download_button('Download csv File', file_name="python_tweetscrap.csv", data=csv, mime="text/csv")
+    st.write(st.session_state.Download_csv_File)
 
-csv = dwl(tweets_df1)
-if 'Download_csv_File' not in st.session_state:
-    st.session_state.Download_csv_File = True
-st.download_button('Download csv File', file_name="python_tweetscrap.csv", data=csv, mime="text/csv")
-st.write(st.session_state.Download_csv_File)
-
-csvfile = open("python_tweetscrap.csv", 'r')
-dfd = pd.read_csv(csvfile)
-data1 = dfd.to_dict(orient="records")
-newcol.insert_many(data1)
+    csvfile = open("python_tweetscrap.csv", 'r')
+    dfd = pd.read_csv(csvfile)
+    data1 = dfd.to_dict(orient="records")
+    newcol.insert_many(data1)
 
 
 def upl():
@@ -82,10 +82,9 @@ def upl():
     return data
 
 
-
+downloading_json_file()
+downloading_csv_file()
 upl()
-dwl1(df)
-dwl(df)
 st.success("Data scrapped and collected successfully")
 st.snow()
 client.close()
