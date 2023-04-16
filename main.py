@@ -23,14 +23,14 @@ newcol = newdb["datas"]
 
 if w:
     if choice == "keyword":
-        for i, tweet in enumerate(snmtwitter.TwitterSearchScraper('w').get_items()):
+        for i, tweet in enumerate(snmtwitter.TwitterSearchScraper(f'{w} since:{date} until:{date1}').get_items()):
             if i > 1000 and date < date1 and choice >= tweet.retweetCount:
                 break
             tweet_list.append([tweet.date, tweet.id, tweet.url, tweet.content, tweet.user, tweet.replyCount, tweet.retweetCount, tweet.lang, tweet.source, tweet.likeCount])
         tweets_df1 = pd.DataFrame(tweet_list, columns=['Datetime', 'Tweetid', 'Url', 'Content', 'User', 'Replycount', 'Retweetcount', 'Language', 'Source', 'Likecount'])
         st.dataframe(tweets_df1)
     else:
-        for i, tweet in enumerate(snmtwitter.TwitterHashtagScraper('w').get_items()):
+        for i, tweet in enumerate(snmtwitter.TwitterHashtagScraper(f'{w} since:{date} until:{date1}').get_items()):
             if i > 1000 and date < date1 and choice >= tweet.retweetCount:
                 break
             tweet_list.append(
